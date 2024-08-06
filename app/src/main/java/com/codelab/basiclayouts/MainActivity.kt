@@ -19,7 +19,6 @@ package com.codelab.basiclayouts
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
@@ -81,7 +80,6 @@ class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
             val windowSizeClass = calculateWindowSizeClass(this)
             MySootheApp(windowSizeClass)
@@ -185,8 +183,8 @@ fun AlignYourBodyRow(
         contentPadding = PaddingValues(horizontal = 16.dp),
         modifier = modifier,
     ) {
-        items(alignYourBodyData) {
-            item -> AlignYourBodyElement(
+        items(alignYourBodyData) { item ->
+            AlignYourBodyElement(
                 image = item.imageResId,
                 text = item.textResId,
             )
@@ -206,8 +204,8 @@ fun FavoriteCollectionsGrid(
         verticalArrangement = Arrangement.spacedBy(16.dp),
         modifier = modifier.height(168.dp),
     ) {
-        items(favoriteCollectionsData) {
-            item -> FavoriteCollectionCard(
+        items(favoriteCollectionsData) { item ->
+            FavoriteCollectionCard(
                 image = item.imageResId,
                 text = item.textResId,
                 Modifier.height(80.dp)
@@ -339,11 +337,9 @@ private fun SootheNavigationRail(modifier: Modifier = Modifier) {
 fun MySootheAppPortrait() {
     MySootheTheme {
         Scaffold(
-            bottomBar = {
-                SootheBottomNavigation()
-            }
-        ) {
-            HomeScreen(modifier = Modifier.padding(bottom = 56.dp))
+            bottomBar = { SootheBottomNavigation() }
+        ) { padding ->
+            HomeScreen(Modifier.padding(padding))
         }
     }
 }
@@ -368,6 +364,7 @@ fun MySootheApp(windowSize: WindowSizeClass) {
         WindowWidthSizeClass.Compact -> {
             MySootheAppPortrait()
         }
+
         WindowWidthSizeClass.Expanded -> {
             MySootheAppLandscape()
         }
