@@ -10,6 +10,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -21,9 +25,13 @@ import com.codelab.basiclayouts.ui.theme.MySootheTheme
 fun SearchBar(
     modifier: Modifier = Modifier
 ) {
+    var searchInput by remember { mutableStateOf("") }
+
     TextField(
-        value = "",
-        onValueChange = { },
+        value = searchInput,
+        onValueChange = {
+            searchInput = it
+        },
         leadingIcon = {
             Icon(
                 imageVector = Icons.Filled.Search,
@@ -31,16 +39,16 @@ fun SearchBar(
             )
         },
         colors = TextFieldDefaults.colors(
-            cursorColor = MaterialTheme.colorScheme.primary,
             focusedIndicatorColor = MaterialTheme.colorScheme.surface,
             unfocusedIndicatorColor = MaterialTheme.colorScheme.onSurface
         ),
         placeholder = {
             stringResource(id = R.string.placeholder_search)
         },
+        singleLine = true,
         modifier = modifier
             .fillMaxWidth()
-            .heightIn(min = 56.dp),
+            .heightIn(min = 56.dp)
     )
 }
 
