@@ -251,14 +251,14 @@ fun FavoriteCollectionCardPreview() {
 
 @Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
 @Composable
-fun FavoriteCollectionsGridPreview() {
-    MySootheTheme { FavoriteCollectionsGrid() }
+fun AlignYourBodyRowPreview() {
+    MySootheTheme { AlignYourBodyRow() }
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
 @Composable
-fun AlignYourBodyRowPreview() {
-    MySootheTheme { AlignYourBodyRow() }
+fun FavoriteCollectionsGridPreview() {
+    MySootheTheme { FavoriteCollectionsGrid() }
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
